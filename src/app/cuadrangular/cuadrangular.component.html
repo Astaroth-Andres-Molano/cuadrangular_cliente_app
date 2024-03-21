@@ -1,0 +1,99 @@
+<div class="container">
+    <h1>Cuadrangular de Fútbol</h1>
+    
+    <!-- Formulario para registrar equipos -->
+    <h2>Registrar Equipos</h2>
+    <form [formGroup]="teamForm" (ngSubmit)="registerTeams()">
+        <div class="form-group">
+            <label for="team1">Equipo 1:</label>
+            <input type="text" class="form-control" id="team1" formControlName="team1">
+        </div>
+        <div class="form-group">
+            <label for="team2">Equipo 2:</label>
+            <input type="text" class="form-control" id="team2" formControlName="team2">
+        </div>
+        <div class="form-group">
+            <label for="team3">Equipo 3:</label>
+            <input type="text" class="form-control" id="team3" formControlName="team3">
+        </div>
+        <div class="form-group">
+            <label for="team4">Equipo 4:</label>
+            <input type="text" class="form-control" id="team4" formControlName="team4">
+        </div>
+        <div>
+            <div *ngIf="successMessage" class="message success">{{ successMessage }}</div>
+            <div *ngIf="errorMessage" class="message error">{{ errorMessage }}</div>
+        </div>
+        <button (click)="registerTeams()" class="btn btn-primary">Registrar Equipos</button>
+    </form>
+
+    <!-- Formulario para registrar marcadores de los partidos -->
+<h2>Registrar Marcadores de los Partidos</h2>
+<form [formGroup]="matchForm" (ngSubmit)="registerMatch()">
+    <!-- Primer partido -->
+    <div class="form-group">
+        <label for="localTeam1">Equipo Local 1:</label>
+        <select class="form-control" id="localTeam1" formControlName="localTeam1">
+            <option *ngFor="let team of teamsData" [value]="team.id">{{ team.nombre }}</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="visitorTeam1">Equipo Visitante 1:</label>
+        <select class="form-control" id="visitorTeam1" formControlName="visitorTeam1">
+            <option *ngFor="let team of teamsData" [value]="team.id">{{ team.nombre }}</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="goalsLocal1">Goles del Equipo Local 1:</label>
+        <input type="number" class="form-control" id="goalsLocal1" formControlName="goalsLocal1" min="0">
+    </div>
+    <div class="form-group">
+        <label for="goalsVisitor1">Goles del Equipo Visitante 1:</label>
+        <input type="number" class="form-control" id="goalsVisitor1" formControlName="goalsVisitor1" min="0">
+    </div>
+
+    <!-- Segundo partido -->
+    <div class="form-group">
+        <label for="localTeam2">Equipo Local 2:</label>
+        <select class="form-control" id="localTeam2" formControlName="localTeam2">
+            <option *ngFor="let team of teamsData" [value]="team.id">{{ team.nombre }}</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="visitorTeam2">Equipo Visitante 2:</label>
+        <select class="form-control" id="visitorTeam2" formControlName="visitorTeam2">
+            <option *ngFor="let team of teamsData" [value]="team.id">{{ team.nombre }}</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="goalsLocal2">Goles del Equipo Local 2:</label>
+        <input type="number" class="form-control" id="goalsLocal2" formControlName="goalsLocal2" min="0">
+    </div>
+    <div class="form-group">
+        <label for="goalsVisitor2">Goles del Equipo Visitante 2:</label>
+        <input type="number" class="form-control" id="goalsVisitor2" formControlName="goalsVisitor2" min="0">
+    </div>
+    <div>
+        <div *ngIf="successMessage" class="message success">{{ successMessage }}</div>
+        <div *ngIf="errorMessage" class="message error">{{ errorMessage }}</div>
+    </div>
+    <button (click)="registerMatch()" class="btn btn-primary">Registrar Marcadores</button>
+</form>
+
+
+    <!-- Tabla de Clasificación -->
+    <h2>Tabla de Clasificación</h2>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Equipo</th>
+                <th>Puntos</th>
+                <th>Goles a Favor</th>
+                <th>Goles en Contra</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Datos de la tabla se cargarán dinámicamente con Angular -->
+        </tbody>
+    </table>
+</div>
